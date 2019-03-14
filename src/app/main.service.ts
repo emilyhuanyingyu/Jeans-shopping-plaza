@@ -8,7 +8,9 @@ export class MainService {
 
   constructor(private http: HttpClient) { }
 
- 
+  fetchAllItems(){
+    return this.http.get(`/items`);
+  }
 
 
 }

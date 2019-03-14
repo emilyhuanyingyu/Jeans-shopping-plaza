@@ -12,7 +12,9 @@ export class AppComponent {
   constructor(private service: MainService) { }
 
   ngOnInit() {
-  
+    this.service.fetchAllItems().subscribe((data) => {
+      console.log(data);
+    })
   }
 
 

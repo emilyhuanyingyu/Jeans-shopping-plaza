@@ -1,0 +1,11 @@
+{
+    "/items/*": {
+      "target": "https://jean-itemlookup-service.herokuapp.com",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/library": ""
+      }
+    }
+  }
