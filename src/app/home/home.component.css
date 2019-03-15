@@ -7,14 +7,18 @@ img{
 
 .itemsBox{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 30px;
 }
 
 .itemBox{
     flex-basis: 20%;
     border: 1px solid #ddd;
     text-align: center;
-    margin: 6px;
+    margin: 2px;
+}
+
+.search-hero input{
+    font-family:Arial, FontAwesome;
+    margin-top: 10px;
 }

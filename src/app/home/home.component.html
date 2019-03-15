@@ -1,15 +1,18 @@
-<!-- <app-navbar></app-navbar> -->
-<div class="search-hero">
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" 
-        placeholder="&#xF002;  Start searching for a item by name" style="font-family:Arial, FontAwesome">
+<div class="container">
+    <div class="search-hero">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="&#xF002;  Start searching for a item by name">
+    </div>
 
-</div>
-<div class="container itemsBox">
+
+<div class="itemsBox">
     <div *ngFor="let item of items | filterItems: searchText" class=itemBox>
         <img src="https://source.unsplash.com/1600x900/?nature+{{item.category}}" alt="">
         <h4>{{item.name}}</h4>
         <p>{{item.category}}</p>
         <h5>{{item.price | currency}}</h5>
+        <button class="btn btn-outline-secondary"><i class="fas fa-shopping-cart"></i> Add to cart</button>
 
     </div>
+</div>
 </div>
