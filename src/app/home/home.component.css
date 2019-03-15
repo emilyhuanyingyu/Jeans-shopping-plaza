@@ -1,0 +1,20 @@
+img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.itemsBox{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.itemBox{
+    flex-basis: 20%;
+    border: 1px solid #ddd;
+    text-align: center;
+    margin: 6px;
+}

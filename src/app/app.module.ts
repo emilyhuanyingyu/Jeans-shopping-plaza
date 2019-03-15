@@ -12,6 +12,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MainService } from "./main.service";
+import { FilterPipe } from './filter.pipe';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +24,14 @@ import { MainService } from "./main.service";
     CheckoutComponent,
     ProfileComponent,
     NavbarComponent,
+    FilterPipe,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [MainService],
   bootstrap: [AppComponent]
