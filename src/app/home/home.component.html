@@ -7,8 +7,10 @@
 
 <div class="itemsBox">
     <div *ngFor="let item of items | filterItems: searchText" class=itemBox>
-        <img src="https://source.unsplash.com/1600x900/?nature+{{item.category}}" alt="">
-        <h4>{{item.name}}</h4>
+        <!-- <img src="https://source.unsplash.com/1600x900/?nature+{{item.category}}" alt=""> -->
+        <img src="https://www.fresh.com/on/demandware.static/-/Sites-Master/default/dwb4f113ff/products/Products_490/PrepAndPout_490_1.jpg" alt="">
+        <h4><a [routerLink]="['/item', item.id]">
+            {{item.name}}</a></h4>
         <p>{{item.category}}</p>
         <h5>{{item.price | currency}}</h5>
         <button class="btn btn-outline-secondary"><i class="fas fa-shopping-cart"></i> Add to cart</button>

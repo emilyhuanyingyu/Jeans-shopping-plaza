@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainService } from "./main.service";
 import { FilterPipe } from './filter.pipe';
 import { HomeComponent } from './home/home.component';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HomeComponent } from './home/home.component';
     ProfileComponent,
     NavbarComponent,
     FilterPipe,
-    HomeComponent
+    HomeComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,

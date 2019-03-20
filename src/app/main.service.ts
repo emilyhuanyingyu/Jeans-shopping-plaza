@@ -12,5 +12,13 @@ export class MainService {
     return this.http.get(`/items`);
   }
 
+  getItem(id){
+    return this.http.get(`/items/${id}`);
+  }
+
+  getItemRating(id){
+    return this.http.get(`/items`+id+`/rating`);
+  }
+
 
 }
