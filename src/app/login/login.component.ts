@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   handleLogin(email, password){
     this.http.login(email, password)
               .subscribe( data => {
-                console.log(data);
+                console.log(data.body);
                 if(data.status == 200){
                   alert("successfully logged in");
                 }
