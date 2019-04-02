@@ -1,24 +1,34 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h1>Returning customer</h1>
-      <form>
-        <div class="row">
-          <div class="col-sm-6 form-group">
-            <label for="email">Email address:</label>
-            <input type="text" id="email" class="form-group">
-          </div>
-          <div class="col-sm-6 form-group">
-            <label for="password">Password:</label>
-            <input type="text" id="password" class="form-group">
-          </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-              <button class="btn btn-success" type="submit">Add</button>
+  <ngb-tabset>
+    <ngb-tab title="Log In">
+      <ng-template ngbTabContent>
+          <h4 class="highlight">{{errMessage}}</h4>
+          <form [formGroup]='newForm'>
+            <div class="form-group">
+              <label for="inputEmail">Email address</label>
+              <input type="email" class="form-control" formControlName='myEmail'
+                value='emailGetter.value'>
+              <small *ngIf='emailGetter.invalid && emailGetter.touched' class="highlight">Correct Email format is
+                required</small>
             </div>
-          </div>
-      </form>
-    </div>
-  </div>
+            <div class="form-group">
+              <label for="inputPassword">Password</label>
+              <input type="text" class="form-control" formControlName='myPassword'
+                value='passwordGetter.value'>
+              <small *ngIf='passwordGetter.touched && passwordGetter.invalid' class="highlight">Minimum required lengths
+                for password is 5</small>
+            </div>
+            <button [disabled]='buttonDisabled' #btn (click)='submit()' type="submit" class="btn btn-primary">Log
+              In</button>
+          </form>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle>Register</ng-template>
+      <ng-template ngbTabContent>
+        <app-register></app-register>
+        
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
 </div>

@@ -1,3 +1,28 @@
-<p>
-  register works!
-</p>
+{{errMessage}}
+<form [formGroup]='registerForm'>
+  <div class="form-group">
+    <label for="inputEmail">Email address</label>
+    <input type="email" class="form-control" formControlName='regisEmail' value='regisemailGetter.value'>
+    <small *ngIf='regisemailGetter.invalid && regisemailGetter.touched' style='color:red'>Correct Email format is
+      required</small>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail">User Name</label>
+    <input type="text" class="form-control" formControlName='regisUserName' value='regisUserNameGetter.value'>
+    <small *ngIf='regisUserNameGetter.touched && regisUserNameGetter.invalid' style='color:red'>Minimum required lengths
+      for user name is 5</small>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword">Password</label>
+    <input type="text" class="form-control" formControlName='regisPassword' value='regisPasswordGetter.value'>
+    <small *ngIf='regisPasswordGetter.touched && regisPasswordGetter.invalid' style='color:red'>Minimum required lengths
+      for password is 5</small>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword">Confirm Password</label>
+    <input type="text" class="form-control" formControlName='cfPassword' value='cfPasswordGetter.value'>
+    <small *ngIf='cfPasswordGetter.touched && cfPasswordGetter.invalid' style='color:red'>Passwords do not match</small>
+  </div>
+  <button [disabled]='regisDisabled' #btn (click)='regisSubmit()' type="submit"
+    class="btn btn-primary">Register</button>
+</form>

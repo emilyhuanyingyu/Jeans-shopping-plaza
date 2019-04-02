@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.service.fetchAllItems().subscribe((data) => {
-      console.log(data);
       this.items = data;
     })
   }

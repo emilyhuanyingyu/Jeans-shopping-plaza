@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MainService } from "../main.service";
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: MainService) { }
 
   ngOnInit() {
+    if(this.service.currentUser !== null){
+      console.log("this.service.currentUser",this.service.currentUser);
+    }
+    else{
+      console.log("this.service.currentUser is null");
+    }
+  }
+
+  userLogout(){
+    this.service.logout();
   }
 
 }

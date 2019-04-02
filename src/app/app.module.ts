@@ -9,12 +9,13 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MainService } from "./main.service";
 import { FilterPipe } from './filter.pipe';
 import { HomeComponent } from './home/home.component';
 import { ItemComponent } from './item/item.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { ItemComponent } from './item/item.component';
     CartComponent,
     CheckoutComponent,
     ProfileComponent,
-    NavbarComponent,
+    NavbarComponent, 
     FilterPipe,
     HomeComponent,
     ItemComponent
@@ -33,7 +34,9 @@ import { ItemComponent } from './item/item.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
+    NgbModule
   ],
   providers: [MainService],
   bootstrap: [AppComponent]
