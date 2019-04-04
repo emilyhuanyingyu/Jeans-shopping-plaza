@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   regisDisabled: Boolean = true;
-  errMessage:string = '';
+  errMessage: string = '';
 
   constructor(private service: MainService, private router: Router, private FormBuilder: FormBuilder) {
     this.createForm();
@@ -19,10 +19,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm.valueChanges.subscribe((res) => {
-      // console.log(res);
-      if(this.registerForm.valid){
+      if (this.registerForm.valid) {
         this.regisDisabled = false;
-      }else{
+      } else {
         this.regisDisabled = true;
       }
     })
@@ -42,45 +41,43 @@ export class RegisterComponent implements OnInit {
         Validators.compose([
           Validators.required, Validators.minLength(5)
         ])],
-        cfPassword: ['',
-      Validators.compose([
-        Validators.required, 
-      ])]
-    }, {
-      validator: this.checkPasswords
-  })
+      cfPassword: ['',
+        Validators.compose([
+          Validators.required,
+        ])]
+    })
   }
 
-  get regisemailGetter(){
+  get regisemailGetter() {
     return this.registerForm.get('regisEmail')
   }
 
-  get regisUserNameGetter(){
+  get regisUserNameGetter() {
     return this.registerForm.get('regisUserName')
   }
 
-  get regisPasswordGetter(){
+  get regisPasswordGetter() {
     return this.registerForm.get('regisPassword')
   }
 
-  get cfPasswordGetter(){
+  get cfPasswordGetter() {
     return this.registerForm.get('cfPassword')
   }
 
-  getFromValue(){
-    let temp:any = {};
+  getFromValue() {
+    let temp: any = {};
     temp.email = this.regisemailGetter.value;
     temp.username = this.regisUserNameGetter.value;
     temp.password = this.regisPasswordGetter.value;
     return temp;
   }
 
-  regisSubmit(){
+  regisSubmit() {
     let formInput = this.getFromValue();
     this.registerForm.reset();
     this.service.userRegister(formInput).subscribe((data) => {
-      if(data){
-        if(data.status == 201) {
+      if (data) {
+        if (data.status == 201) {
           this.router.navigate(['/']);
         }
       }
@@ -88,13 +85,4 @@ export class RegisterComponent implements OnInit {
       this.errMessage = "Something is wrong, please try again"
     })
   }
-
-  checkPasswords(){
-    // console.log("checkPasswords function called");
-    // let pw = this.regisPasswordGetter.value;
-    // let cfpw = this.cfPasswordGetter.value;
-    // console.log(pw, cfpw);
-    // return pw === cfpw ? null : true;
-  }
-
 }

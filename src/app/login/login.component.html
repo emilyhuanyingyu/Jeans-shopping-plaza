@@ -1,33 +1,32 @@
-<div class="container">
+<div class="container formContainer">
   <ngb-tabset>
     <ngb-tab title="Log In">
       <ng-template ngbTabContent>
-          <h4 class="highlight">{{errMessage}}</h4>
-          <form [formGroup]='newForm'>
-            <div class="form-group">
-              <label for="inputEmail">Email address</label>
-              <input type="email" class="form-control" formControlName='myEmail'
-                value='emailGetter.value'>
-              <small *ngIf='emailGetter.invalid && emailGetter.touched' class="highlight">Correct Email format is
-                required</small>
-            </div>
-            <div class="form-group">
-              <label for="inputPassword">Password</label>
-              <input type="text" class="form-control" formControlName='myPassword'
-                value='passwordGetter.value'>
-              <small *ngIf='passwordGetter.touched && passwordGetter.invalid' class="highlight">Minimum required lengths
-                for password is 5</small>
-            </div>
-            <button [disabled]='buttonDisabled' #btn (click)='submit()' type="submit" class="btn btn-primary">Log
-              In</button>
-          </form>
+        <div *ngIf="errMessage">
+            <h4 class="alert">{{errMessage}}</h4>
+        </div>
+        <form [formGroup]='newForm'>
+          <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" class="form-control" formControlName='myEmail' value='emailGetter.value'>
+            <div class="alert" *ngIf='emailGetter.invalid && emailGetter.touched'>Please enter correct Email format</div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="text" class="form-control" formControlName='myPassword' value='passwordGetter.value'>
+            <div *ngIf='passwordGetter.touched && passwordGetter.invalid' class="alert">Minimum required lengths
+              for password is 5</div>
+          </div>
+          <button [disabled]='buttonDisabled' #btn (click)='submit()' type="submit" class="btn btn-primary">Log
+            In</button>
+        </form>
       </ng-template>
     </ngb-tab>
     <ngb-tab>
       <ng-template ngbTabTitle>Register</ng-template>
       <ng-template ngbTabContent>
         <app-register></app-register>
-        
+
       </ng-template>
     </ngb-tab>
   </ngb-tabset>

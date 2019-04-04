@@ -16,6 +16,7 @@ import { FilterPipe } from './filter.pipe';
 import { HomeComponent } from './home/home.component';
 import { ItemComponent } from './item/item.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { CompareValidatorDirective } from './compare-validator.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NavbarComponent, 
     FilterPipe,
     HomeComponent,
-    ItemComponent
+    ItemComponent,
+    CompareValidatorDirective
   ],
   imports: [
     BrowserModule,
