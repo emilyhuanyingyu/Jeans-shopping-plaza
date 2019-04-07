@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
       if (data) {
         console.log(data);
         if (data.status == 200) {
+          console.log("data.status == 200",data);
           this.router.navigate(['/']);
         }
       }

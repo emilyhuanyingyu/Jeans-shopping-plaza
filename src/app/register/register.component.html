@@ -3,25 +3,30 @@
   <div class="form-group">
     <label for="inputEmail">Email address</label>
     <input type="email" required class="form-control" formControlName='regisEmail' value='regisemailGetter.value'>
-    <small *ngIf='regisemailGetter.invalid && regisemailGetter.touched'  class="alertMessage">Correct Email format is
-      required</small>
+    <div class="alertMessage" *ngIf="regisemailGetter.invalid && (regisemailGetter.dirty || regisemailGetter.touched)">
+      <div *ngIf="regisemailGetter.errors['required']">Email is required</div>
+      <div *ngIf="regisemailGetter.errors">Please enter correct Email format</div>
+    </div>
   </div>
   <div class="form-group">
     <label for="inputEmail">User Name</label> 
     <input type="text" class="form-control" formControlName='regisUserName' value='regisUserNameGetter.value'>
-    <small *ngIf='regisUserNameGetter.touched && regisUserNameGetter.invalid'  class="alertMessage">Minimum required lengths
-      for user name is 5</small>
+      <div class="alertMessage" *ngIf="regisUserNameGetter.invalid && (regisUserNameGetter.dirty || regisUserNameGetter.touched)">
+        <div *ngIf="regisUserNameGetter.errors['required']">User name is required</div>
+        <div *ngIf="regisUserNameGetter.errors">Minimum lengths for user name is 5</div>
+      </div>
   </div>
   <div class="form-group">
     <label for="inputPassword">Password</label>
     <input type="text" class="form-control" formControlName='regisPassword' name="regisPassword" value='regisPasswordGetter.value'>
-    <small class="alertMessage" *ngIf='regisPasswordGetter.touched && regisPasswordGetter.invalid'>Minimum required lengths
-      for password is 5</small>
+      <div class="alertMessage" *ngIf="regisPasswordGetter.invalid && (regisPasswordGetter.dirty || regisPasswordGetter.touched)">
+        <div *ngIf="regisPasswordGetter.errors['required']">Password is required</div>
+        <div *ngIf="regisPasswordGetter.errors">Minimum lengths for password is 5</div>
+      </div>
   </div>
   <div class="form-group">
     <label for="inputPassword">Confirm Password</label>
     <input type="text" class="form-control" formControlName='cfPassword' value='cfPasswordGetter.value' compare="regisPassword" required>
-    <!-- <small *ngIf='cfPasswordGetter.touched && cfPasswordGetter.invalid' style='color:red'>Passwords do not match</small> -->
     <div class="alertMessage" *ngIf="cfPasswordGetter.invalid && (cfPasswordGetter.dirty || cfPasswordGetter.touched)">
         <div *ngIf="cfPasswordGetter.errors['required']">Password confirm is required</div>
         <div *ngIf="cfPasswordGetter.errors['compare']">Password confirm do not match</div>
