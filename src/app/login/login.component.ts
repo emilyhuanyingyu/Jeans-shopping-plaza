@@ -13,26 +13,17 @@ export class LoginComponent implements OnInit {
   newForm: FormGroup;
   buttonDisabled: boolean = true;
   errMessage: string;
+  loggedUser: string;
 
   constructor(private service: MainService, private router: Router, private FormBuilder: FormBuilder) {
     this.createForm();
   }
 
   ngOnInit() {
-    // this.emailGetter.valueChanges.subscribe((res) => {
-    //   if (res) {
-    //     // console.log(res);
-    //     if (res.valid) {
-    //       this.buttonDisabled = false;
-    //     }
-    //   }
-    // })
-
     this.newForm.valueChanges.subscribe((res) => {
-      // console.log(res);
       if (this.newForm.valid) {
         this.buttonDisabled = false;
-      }else{
+      } else {
         this.buttonDisabled = true;
       }
     })
@@ -62,12 +53,13 @@ export class LoginComponent implements OnInit {
 
   submit() {
     let formInput = this.getFormValue();
+    this.loggedUser = formInput.email;
     this.newForm.reset();
-    this.service.userlogin(formInput.email, formInput.password).subscribe((data) => {
-      if (data) {
-        console.log(data);
-        if (data.status == 200) {
-          console.log("data.status == 200",data);
+    this.service.userlogin(formInput.email, formInput.password).subscribe((response) => {
+      if (response) {
+        console.log("response.headers", response.headers);
+        if (response.status == 200) {
+          this.service.checkLogin.next(formInput.email);
           this.router.navigate(['/']);
         }
       }

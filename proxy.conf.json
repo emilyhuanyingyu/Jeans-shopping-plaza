@@ -1,23 +1,21 @@
 {
-    "/items/*": {
-      "target": "https://jean-itemlookup-service.herokuapp.com",
-      "secure": false,
-      "logLevel": "debug",
-      "changeOrigin": true,
-      "pathRewrite": {
-        "^/library": ""
-      }
-    },
-    "/login*": {
-      "target": "https://jean-userprofile-service.herokuapp.com",
-      "secure": false,
-      "logLevel": "debug",
-      "changeOrigin": true,
-      "pathRewrite": {
-        "^/library": ""
-      }
+  "/items/*": {
+    "target": "https://jean-zuul-server.herokuapp.com/jean-itemlookup-service",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/library": ""
     }
-
-    
-
+  },
+  "/login*": {
+    "target": "https://jean-zuul-server.herokuapp.com/jean-userprofile-service",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/library": ""
+    }
   }
+
+}
