@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { MainService } from "../main.service";
 import { Router } from '@angular/router';
 
@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   buttonDisabled: boolean = true;
   errMessage: string;
   loggedUser: string;
+  token: any;
 
   constructor(private service: MainService, private router: Router, private FormBuilder: FormBuilder) {
     this.createForm();
@@ -57,9 +58,12 @@ export class LoginComponent implements OnInit {
     this.newForm.reset();
     this.service.userlogin(formInput.email, formInput.password).subscribe((response) => {
       if (response) {
-        console.log("response.headers", response.headers);
+        console.log("response.headers", response.headers.get('token'));
         if (response.status == 200) {
-          this.service.checkLogin.next(formInput.email);
+          this.token = response.headers.get('token')
+          console.log("token here: ",this.token);
+          localStorage.setItem('userToken',response.headers.get('token'));
+          this.service.loginStatus.next(true);
           this.router.navigate(['/']);
         }
       }

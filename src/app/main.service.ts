@@ -1,30 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Subject } from "rxjs";
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainService {
-  currentUser = null;
-  checkLogin = new Subject<''>();
-
+  loginStatus = new Subject<boolean>();
 
   constructor(private http: HttpClient) {
-    console.log(this.checkLogin);
-    // localStorage.currentUser = this.checkLogin;
-
-    // if(localStorage.currentUser !== undefined){
-    //   this.currentUser = JSON.parse(localStorage.currentUser)
-    //   const data = [{
-    //     user: this.currentUser
-    //   }]
-    // }
-    // else{
-    //   const data = [{
-    //     user: null
-    //   }]
-    // }
   }
 
   fetchAllItems() {
@@ -45,10 +29,6 @@ export class MainService {
 
   userRegister(formInput) {
     return this.http.post(`https://jean-userprofile-service.herokuapp.com/register`, formInput, { observe: 'response' });
-  }
-
-  logout() {
-    localStorage.removeItem('currentUser');
   }
 
 }

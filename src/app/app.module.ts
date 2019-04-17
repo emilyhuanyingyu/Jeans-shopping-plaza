@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { ItemComponent } from './item/item.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CompareValidatorDirective } from './compare-validator.directive';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { CompareValidatorDirective } from './compare-validator.directive';
     HttpClientModule,
     NgbModule
   ],
-  providers: [MainService],
+  providers: [MainService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
