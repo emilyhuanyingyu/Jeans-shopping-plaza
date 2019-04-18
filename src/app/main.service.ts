@@ -27,8 +27,15 @@ export class MainService {
     return this.http.post<any>(`/login?email=` + emailid + `&password=` + password, {}, { observe: 'response' });
   }
 
+  // userRegister(formInput) {
+  //   return this.http.post(`https://jean-userprofile-service.herokuapp.com/register`, formInput, { observe: 'response' });
+  // }
   userRegister(formInput) {
-    return this.http.post(`https://jean-userprofile-service.herokuapp.com/register`, formInput, { observe: 'response' });
+    return this.http.post(`/register`, formInput, { observe: 'response' });
   }
 
+  resetPwbyEmail(emailid:string){
+    return this.http.post(`/resetPassword?email=`+emailid, {}, { observe: 'response' });
+  }
+  
 }

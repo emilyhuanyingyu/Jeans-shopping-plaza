@@ -18,6 +18,8 @@ import { ItemComponent } from './item/item.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CompareValidatorDirective } from './compare-validator.directive';
 import { AuthGuard } from './auth.guard';
+import { ResetpwComponent } from './resetpw/resetpw.component';
+import { ForgetpwComponent } from './forgetpw/forgetpw.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { AuthGuard } from './auth.guard';
     FilterPipe,
     HomeComponent,
     ItemComponent,
-    CompareValidatorDirective
+    CompareValidatorDirective,
+    ResetpwComponent,
+    ForgetpwComponent
   ],
   imports: [
     BrowserModule,

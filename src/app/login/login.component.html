@@ -17,9 +17,12 @@
             <div *ngIf='passwordGetter.touched && passwordGetter.invalid' class="alert">Minimum required lengths
               for password is 5</div>
           </div>
+          <!-- <a routerLink='/resetpw'>forget password</a><br> -->
           <button [disabled]='buttonDisabled' #btn (click)='submit()' type="submit" class="btn btn-primary">Log
             In</button>
         </form>
+        <a routerLink='/forgetpw'>forget password</a><br>
+
       </ng-template>
     </ngb-tab>
     <ngb-tab>

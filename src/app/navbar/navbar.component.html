@@ -15,16 +15,16 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="signin" *ngIf="!userLogged">Sign in</a>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" *ngIf="userLogged">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           My Account
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" routerLink="profile">My profile</a>
-          <a class="dropdown-item" href="#">Change password</a>
+          <!-- <a class="dropdown-item" routerLink="resetpw">Change password</a> -->
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="userLogout()" *ngIf="userLogged">Log out</a>
+          <a class="dropdown-item" (click)="userLogout()">Log out</a>
         </div>
       </li>
       <li class="nav-item">

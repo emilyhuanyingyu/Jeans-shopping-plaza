@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>Reset Your Password</h3>
+      <form [formGroup]="passedEmail" (submit)="resetbyEmail(passedEmail.value)" id="toggleForm">
+        <p>Enter the email associated with your account and we'll send you instructions to reset your password.</p>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Email Address</label>
+          <input type="email" class="form-control" formControlName="emailid">
+          <div class="alertMessage" *ngIf="emailGetter.invalid && (emailGetter.dirty || emailGetter.touched)">
+            <div *ngIf="emailGetter.errors['required']">email is required</div>
+
+            <div *ngIf="emailGetter.errors">Please enter correct email format</div>
+          </div>
+        </div>
+        <button [disabled]='disabledButton' type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      <h3>{{instruction}}</h3>
+    </div>
+
+  </div>
+</div>

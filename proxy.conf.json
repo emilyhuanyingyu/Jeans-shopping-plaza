@@ -16,6 +16,24 @@
     "pathRewrite": {
       "^/library": ""
     }
+  },
+  "/user/*": {
+    "target": "https://jean-zuul-server.herokuapp.com/jean-userprofile-service",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/library": ""
+    }
+  },
+  "/register/*": {
+    "target": "https://jean-zuul-server.herokuapp.com/jean-userprofile-service",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/library": ""
+    }
   }
 
 }
