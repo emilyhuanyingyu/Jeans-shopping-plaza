@@ -1,4 +1,7 @@
+<div class="alertMessage">
+  <h5 *ngIf="showError">This email id has been registered. Please <a routerLink='/forgetpw'>reset your password</a> or use another email id</h5>
 {{errMessage}}
+</div>
 <form [formGroup]='registerForm'>
   <div class="form-group">
     <label for="inputEmail">Email address</label>
@@ -18,7 +21,7 @@
   </div>
   <div class="form-group">
     <label for="inputPassword">Password</label>
-    <input type="text" class="form-control" formControlName='regisPassword' name="regisPassword" value='regisPasswordGetter.value'>
+    <input type="password" class="form-control" formControlName='regisPassword' name="regisPassword" value='regisPasswordGetter.value'>
       <div class="alertMessage" *ngIf="regisPasswordGetter.invalid && (regisPasswordGetter.dirty || regisPasswordGetter.touched)">
         <div *ngIf="regisPasswordGetter.errors['required']">Password is required</div>
         <div *ngIf="regisPasswordGetter.errors">Minimum lengths for password is 5</div>
@@ -26,7 +29,7 @@
   </div>
   <div class="form-group">
     <label for="inputPassword">Confirm Password</label>
-    <input type="text" class="form-control" formControlName='cfPassword' value='cfPasswordGetter.value' compare="regisPassword" required>
+    <input type="password" class="form-control" formControlName='cfPassword' value='cfPasswordGetter.value' compare="regisPassword" required>
     <div class="alertMessage" *ngIf="cfPasswordGetter.invalid && (cfPasswordGetter.dirty || cfPasswordGetter.touched)">
         <div *ngIf="cfPasswordGetter.errors['required']">Password confirm is required</div>
         <div *ngIf="cfPasswordGetter.errors['compare']">Password confirm do not match</div>

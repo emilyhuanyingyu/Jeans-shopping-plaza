@@ -58,10 +58,8 @@ export class LoginComponent implements OnInit {
     this.newForm.reset();
     this.service.userlogin(formInput.email, formInput.password).subscribe((response) => {
       if (response) {
-        console.log("response.headers", response.headers.get('token'));
         if (response.status == 200) {
-          this.token = response.headers.get('token')
-          console.log("token here: ",this.token);
+          this.token = response.headers.get('token');
           localStorage.setItem('userToken',response.headers.get('token'));
           this.service.loginStatus.next(true);
           this.router.navigate(['/']);

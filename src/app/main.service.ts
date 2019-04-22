@@ -34,8 +34,15 @@ export class MainService {
     return this.http.post(`/register`, formInput, { observe: 'response' });
   }
 
-  resetPwbyEmail(emailid:string){
-    return this.http.post(`/resetPassword?email=`+emailid, {}, { observe: 'response' });
+  resetPwbyEmail(data){
+    console.log("22",data.emailid, typeof(data));
+    return this.http.post(`/user/resetPassword?email=`+data.emailid, { observe: 'response' });
   }
+
+  resetPassword(id:any, token:any, password:any){
+    return this.http.post(`user/changePassword?id=`+id+`&newPW=`+password+`&token=`+token,{}, {observe: 'response'})
+  }
+
+
   
 }

@@ -12,6 +12,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   regisDisabled: Boolean = true;
   errMessage: string = '';
+  showError: boolean = false;
+  token: any;
 
   constructor(private service: MainService, private router: Router, private FormBuilder: FormBuilder) {
     this.createForm();
@@ -76,13 +78,29 @@ export class RegisterComponent implements OnInit {
     let formInput = this.getFromValue();
     this.registerForm.reset();
     this.service.userRegister(formInput).subscribe((data) => {
+      console.log("formInput",formInput.email, formInput.password);
       if (data) {
         if (data.status == 201) {
-          this.router.navigate(['/']);
+          this.service.userlogin(formInput.email, formInput.password).subscribe((response)=>{
+            if (response.status == 200) {
+              this.token = response.headers.get('token');
+              localStorage.setItem('userToken',response.headers.get('token'));
+              this.service.loginStatus.next(true);
+              this.router.navigate(['/']);
+            }
+          })
         }
+
       }
     }, (err) => {
-      this.errMessage = "Something is wrong, please try again"
+      if (err.status == 400) {
+        this.showError = true;
+        this.registerForm.reset();
+      }
+      else {
+        this.errMessage = "Something is wrong, please try again"
+
+      }
     })
   }
 }

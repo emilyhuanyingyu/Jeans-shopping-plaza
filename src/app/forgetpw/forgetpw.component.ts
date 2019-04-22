@@ -11,6 +11,7 @@ export class ForgetpwComponent implements OnInit {
   disabledButton: boolean = true;
   passedEmail: any;
   instruction: string = "";
+  inputEmail: string = "";
 
 
   constructor(private service: MainService) { }
@@ -38,9 +39,10 @@ export class ForgetpwComponent implements OnInit {
   resetbyEmail(email) {
     console.log("resetPWbyEmail", email);
     this.service.resetPwbyEmail(email).subscribe((data) => {
-      console.log(data);
+      console.log("11",data);
       if (data) {
-        this.instruction = "If you have an account, you'll receive instructions for resetting your password at " + data;
+        this.instruction = "If you have an account, you'll receive instructions for resetting your password at ";
+        this.inputEmail = email.emailid;
         document.getElementById("toggleForm").style.display = "none";
       }
     })

@@ -2,15 +2,27 @@
   <div class="row">
     <div class="col">
       <h3>Reset Your Password</h3>
-      <form>
+      <h5 *ngIf="errMessage" class="alertMessage">Something is wrong, please click <a routerLink='/forgetpw'>forget password</a> again to enter the email associated with your account</h5>
+      <form [formGroup]="formdata" (submit)="resetSubmit(formdata.value)">
         <h5>Email address:</h5>
         <div class="form-group">
           <label for="exampleInputPassword1">New password (5 character mininum)</label>
-          <input type="password" class="form-control" id="inputPassword1">
+          <input type="password" class="form-control" id="inputPassword1" formControlName="password">
+        
+        <div class="alertMessage" *ngIf="pwGetter.invalid && (pwGetter.touched || pwGetter.dirty)">
+          <div *ngIf="pwGetter.errors['required']">password is required</div>
+          <div *ngIf="pwGetter.errors">At least 5 character for password</div>
         </div>
+      </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Confirm Password</label>
-          <input type="password" class="form-control" id="inputPassword2">
+          <input type="password" class="form-control" id="inputPassword2" formControlName="confirmPassword" compare="password">
+          <div class="alertMessage" *ngIf="confirmpwGetter.invalid &&(confirmpwGetter.touched || confirmpwGetter.dirty)">
+            <div *ngIf="confirmpwGetter.errors['required']">
+              Confirm password is required.
+            </div>
+            <div *ngIf="confirmpwGetter.errors['compare']">Password confirm do not match</div>
+          </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

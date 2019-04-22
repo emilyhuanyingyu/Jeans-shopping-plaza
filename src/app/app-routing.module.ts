@@ -20,6 +20,7 @@ const routes: Routes = [
   {path: 'checkout', component:CheckoutComponent, canActivate:[AuthGuard]},
   {path: 'item/:id',component: ItemComponent},
   {path: 'resetpw',component: ResetpwComponent},
+  // {path: 'restpw?id=:id&token=:token',component: ResetpwComponent},
   {path: 'forgetpw',component: ForgetpwComponent},
 ];
 
