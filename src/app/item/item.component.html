@@ -13,9 +13,17 @@
       </select>
       <p>{{item.price | currency}} / each</p>
       <button type="button" class="btn btn-secondary">Add to Cart</button>
-      <p>Overall Rating: {{rating}}</p>
+
       <small>reviews</small><br>
-      <small>Write a review</small>
+      <!-- <small><a routerLink="review" >Write a review</a></small> -->
+      <small><a routerLink="review" (click)="postReview()">Write a review</a></small>
+    </div>
+
+    <div *ngFor="let review of reviews">
+      <p>{{review.message}}</p>
+      <p>{{review.rating}}</p>
+      <p>{{review.username}}</p>
+      <p>{{review.date}}</p>
     </div>
   </div>
 </div>

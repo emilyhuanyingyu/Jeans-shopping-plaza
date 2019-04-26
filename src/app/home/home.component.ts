@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MainService } from "../main.service";
+import { ItemlookupService } from '../itemlookup.service';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +10,10 @@ export class HomeComponent implements OnInit {
   items:any = [];
   searchText;
   
-  constructor(private service: MainService) { }
+  constructor(private itemService: ItemlookupService) { }
 
   ngOnInit() {
-    this.service.fetchAllItems().subscribe((data) => {
+    this.itemService.fetchAllItems().subscribe((data) => {
       this.items = data;
     })
   }

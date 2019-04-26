@@ -13,6 +13,12 @@ export class NavbarComponent implements OnInit {
   constructor(private service: MainService, private router: Router) { }
 
   ngOnInit() {
+    if(localStorage.userToken !== undefined){
+      this.userLogged = true;
+    }else{
+      this.userLogged = false;
+    }
+    
     this.service.loginStatus.subscribe((data) => {
       if(data){
         if(data == true){
@@ -23,7 +29,6 @@ export class NavbarComponent implements OnInit {
         }
       }
     })
-    
   }
 
   userLogout(){

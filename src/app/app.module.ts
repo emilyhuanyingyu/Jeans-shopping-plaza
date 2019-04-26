@@ -11,15 +11,18 @@ import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MainService } from "./main.service";
 import { FilterPipe } from './filter.pipe';
 import { HomeComponent } from './home/home.component';
 import { ItemComponent } from './item/item.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompareValidatorDirective } from './compare-validator.directive';
 import { AuthGuard } from './auth.guard';
 import { ResetpwComponent } from './resetpw/resetpw.component';
 import { ForgetpwComponent } from './forgetpw/forgetpw.component';
+import { MainService } from "./main.service";
+import { ItemlookupService } from "./itemlookup.service";
+import { ReviewComponent } from './review/review.component';
+
 
 @NgModule({
   declarations: [
@@ -29,13 +32,14 @@ import { ForgetpwComponent } from './forgetpw/forgetpw.component';
     CartComponent,
     CheckoutComponent,
     ProfileComponent,
-    NavbarComponent, 
+    NavbarComponent,
     FilterPipe,
     HomeComponent,
     ItemComponent,
     CompareValidatorDirective,
     ResetpwComponent,
-    ForgetpwComponent
+    ForgetpwComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,7 @@ import { ForgetpwComponent } from './forgetpw/forgetpw.component';
     HttpClientModule,
     NgbModule
   ],
-  providers: [MainService, AuthGuard],
+  providers: [MainService, AuthGuard, ItemlookupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
