@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemlookupService {
-  itemName = new Subject<string>();
+  itemName = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) {
    }
@@ -20,19 +20,16 @@ export class ItemlookupService {
   }
 
   postReview(id, postedReview) {
-    console.log("postedReview,",postedReview);
+    console.log("postedReview,",id,postedReview);
     return this.http.post(`/${id}/reviews`, postedReview, {
       headers: new HttpHeaders({
         'token':  localStorage.getItem('userToken')
-      })
+      }), observe: "response"
     })
   }
 
-  // fetchReviews(id,page,size) {
-  //   return this.http.get(`https://jean-zuul-server.herokuapp.com/jean-itemlookup-service/${id}/reviews?page=${page}&size=${size}`)
-  // }
-  fetchReviews(id) {
-    return this.http.get(`https://jean-zuul-server.herokuapp.com/jean-itemlookup-service/${id}/reviews?page=0&size=8`)
+  fetchReviews(id,totalReview) {
+    return this.http.get(`https://jean-zuul-server.herokuapp.com/jean-itemlookup-service/${id}/reviews?page=0&size=${totalReview}`)
   }
 
 }

@@ -1,4 +1,4 @@
-.itemName{
+/* .itemName{
     font-size: 24px;
     display: block;
     text-align: center;
@@ -8,4 +8,28 @@
 .col-md-5{
     text-align: center;
     margin-top: 30px;
+} */
+
+.stars{
+    padding-right: 0px;
 }
+
+.starProgress{
+    padding: 5px;
+}
+
+.star {
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    color: #d3d3d3;
+  }
+  .full {
+    color: red;
+  }
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: red;
+  }

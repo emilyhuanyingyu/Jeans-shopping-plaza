@@ -16,13 +16,19 @@ export class ItemComponent implements OnInit {
     name: "",
     price: null,
   }
-  quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   reviewItem = {
     review: '',
     rating: null
   }
-  reviews: any;
+  quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  reviews = [];
   itemName: string;
+  page: number = 0;
+  pageSize: number = 5;
+  overallRating: number;
+  totalReview: number;
+  currentRate = 3.14;
+
 
   constructor(private mainService: MainService, private itemService: ItemlookupService, private router: Router, private route: ActivatedRoute) { }
 
@@ -34,18 +40,21 @@ export class ItemComponent implements OnInit {
     this.itemService.getItem(this.itemId).subscribe((data: any) => {
       this.item = data;
       this.itemName = data.name;
-    })
+      this.overallRating = data.rating;
+      this.totalReview = data.reviewCount;
 
-    this.getReviews();
+      this.getReviews();
+
+    })
   }
 
   getReviews() {
     var passedObject = {
       itemId: this.itemId,
-      page: 0,
-      size: 3
+      page: this.page,
+      size: this.pageSize
     }
-    this.itemService.fetchReviews(passedObject.itemId).subscribe((res:any) => {
+    this.itemService.fetchReviews(passedObject.itemId, this.totalReview).subscribe((res: any) => {
       if (res) {
         res.map((item) => {
           item.date = new Date(item.date).toLocaleString();
@@ -55,8 +64,7 @@ export class ItemComponent implements OnInit {
     })
   }
 
-  postReview(){
-    console.log(this.itemName);
+  postReview() {
     this.itemService.itemName.next(this.itemName);
   }
 }

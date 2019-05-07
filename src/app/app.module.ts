@@ -22,6 +22,7 @@ import { ForgetpwComponent } from './forgetpw/forgetpw.component';
 import { MainService } from "./main.service";
 import { ItemlookupService } from "./itemlookup.service";
 import { ReviewComponent } from './review/review.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ReviewComponent } from './review/review.component';
     CompareValidatorDirective,
     ResetpwComponent,
     ForgetpwComponent,
-    ReviewComponent
+    ReviewComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -1,29 +1,69 @@
 <div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col-md-6">
+  <div class="row align-items-center">
+    <div class="col-lg-6 col-md-6">
       <img
         src="https://www.fresh.com/on/demandware.static/-/Sites-Master/default/dwf6d11daf/products/Products_490/MeTimeTeaTime1_490.jpg"
-        alt="">
+        alt="" class="img-responsive img-thumbnail">
     </div>
-    <div class="col-md-5">
+    <div class="col-lg-6 col-md-6 text-center">
       <h1 class="itemName">{{item.name}}</h1>
-      <label>Qty:</label>
-      <select>
-        <option *ngFor="let i of quantity">{{i}}</option>
-      </select>
-      <p>{{item.price | currency}} / each</p>
-      <button type="button" class="btn btn-secondary">Add to Cart</button>
+      <div>
+        <label>Qty:
+          <select>
+            <option *ngFor="let i of quantity">{{i}}</option>
+          </select>
+        </label>
+      </div>
 
-      <small>reviews</small><br>
-      <!-- <small><a routerLink="review" >Write a review</a></small> -->
+      <p><span class="lead">{{item.price | currency}}</span> / each</p>
+      <button type="button" class="btn btn-secondary">Add to Cart <i class="fas fa-shopping-cart"></i></button><br>
       <small><a routerLink="review" (click)="postReview()">Write a review</a></small>
     </div>
 
-    <div *ngFor="let review of reviews">
-      <p>{{review.message}}</p>
-      <p>{{review.rating}}</p>
-      <p>{{review.username}}</p>
-      <p>{{review.date}}</p>
+    <div>
+      <h4><i class="far fa-user-circle"></i> user name</h4>
+        <ng-template #t let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+              <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+            </span>
+          </ng-template>
+          
+          <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+          <pre>Rate: <b>{{currentRate}}</b></pre>
+          <!-- <pre>Rate: <b>{{item.rating}}</b></pre> -->
+          
     </div>
   </div>
-</div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-4">
+      <h3>{{totalReview ? totalReview : "0"}} customer reviews</h3>
+
+      <span *ngIf="totalReview>0">{{overallRating | number : '1.2-2' }} out of 5 stars</span>
+      <!-- <div class="row">
+        <div class="col-lg-2 stars">5 star</div>
+        <div class="col-lg-10 starProgress">
+          <div class="progress">
+            <div class="progress-bar progress-bar-warning active" style="width:50%;">
+              50%
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <div class="col-lg-8 col-md-8" *ngIf="totalReview>0">
+      <div *ngFor="let item of reviews | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+        <p>{{item.username}}</p>
+        <p>{{item.rating}}</p>
+        
+        <p>{{item.message}}</p>
+        <p>{{item.date}}</p>
+        <hr>
+      </div>
+      <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="reviews.length" [boundaryLinks]="true">
+      </ngb-pagination>
+    </div>
+  </div>

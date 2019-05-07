@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ItemlookupService } from '../itemlookup.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-review',
@@ -8,42 +9,49 @@ import { ItemlookupService } from '../itemlookup.service';
   styleUrls: ['./review.component.css']
 })
 export class ReviewComponent implements OnInit {
+  @Input() name:any;
   disabledSubmit: boolean = true;
   itemId:any;
   itemName:string;
   isDisabledBtn:boolean = true;
   count:number = 0;
+  errorMessage: string;
 
-  constructor(private itemService: ItemlookupService, private route: ActivatedRoute) { }
+  constructor(private itemService: ItemlookupService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
    this.route.params.subscribe((params: Params) => {
      this.itemId = params.id;
    })
 
-   this.itemService.itemName.subscribe((data) => {
-     this.itemName = data;
-     console.log(this.itemName);
-   })
-  
+   if(this.itemService.itemName.getValue()) {
+     this.itemName = this.itemService.itemName.getValue();
+   }else{
+    // this.router.navigate([`/item/${this.itemId}`]);
+   }
   }
 
   submitReview(passedData) {
-    console.log(passedData);
     var id = this.itemId;
     var postedReview = {
       message: passedData.message,
       rating: passedData.rating,
     }
-    this.itemService.postReview(id, postedReview).subscribe((res) => {
+    this.itemService.postReview(id, postedReview).subscribe((res: any) => {
+      console.log(res);
       if (res) {
+        if(res.status == 201){
+          this.router.navigate([`/item/${this.itemId}`]);
+        }
         console.log(res);
+      }
+      else{
+        this.errorMessage = "something is wrong, please try again";
       }
     })
   }
 
   detectInput(obj:any) {
-    console.log(obj);
     this.isDisabledBtn = obj.message && obj.rating ? false : true;
   }
 

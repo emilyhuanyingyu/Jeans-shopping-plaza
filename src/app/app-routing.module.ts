@@ -11,6 +11,7 @@ import { ResetpwComponent } from './resetpw/resetpw.component';
 import { ForgetpwComponent } from './forgetpw/forgetpw.component';
 import { ReviewComponent } from './review/review.component';
 import { AuthGuard } from './auth.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
@@ -20,9 +21,11 @@ const routes: Routes = [
   {path: 'profile', component:ProfileComponent},
   {path: 'checkout', component:CheckoutComponent, canActivate:[AuthGuard]},
   {path: 'item/:id',component: ItemComponent},
+  {path: 'item/:id/review',component: ReviewComponent},
   {path: 'resetpw',component: ResetpwComponent},
   {path: 'forgetpw',component: ForgetpwComponent},
-  {path: 'item/:id/review',component: ReviewComponent},
+  {path: 'not-found',component: PageNotFoundComponent},
+  {path: '**', redirectTo: '/not-found'}
 ];
 
 @NgModule({
