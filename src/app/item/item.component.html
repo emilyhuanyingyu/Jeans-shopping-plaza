@@ -15,23 +15,11 @@
         </label>
       </div>
 
-      <p><span class="lead">{{item.price | currency}}</span> / each</p>
+      <h3>
+        <span class="text-danger">{{item.price | currency}}</span><small> / each</small>
+      </h3>
       <button type="button" class="btn btn-secondary">Add to Cart <i class="fas fa-shopping-cart"></i></button><br>
       <small><a routerLink="review" (click)="postReview()">Write a review</a></small>
-    </div>
-
-    <div>
-      <h4><i class="far fa-user-circle"></i> user name</h4>
-        <ng-template #t let-fill="fill">
-            <span class="star" [class.full]="fill === 100">
-              <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
-            </span>
-          </ng-template>
-          
-          <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
-          <pre>Rate: <b>{{currentRate}}</b></pre>
-          <!-- <pre>Rate: <b>{{item.rating}}</b></pre> -->
-          
     </div>
   </div>
 
@@ -40,8 +28,9 @@
   <div class="row">
     <div class="col-lg-4 col-md-4">
       <h3>{{totalReview ? totalReview : "0"}} customer reviews</h3>
+      <span class="stars-container" id="currentStar">★★★★★</span>
+      <p *ngIf="totalReview>0">{{overallRating | number : '1.2-2' }} out of 5 stars</p>
 
-      <span *ngIf="totalReview>0">{{overallRating | number : '1.2-2' }} out of 5 stars</span>
       <!-- <div class="row">
         <div class="col-lg-2 stars">5 star</div>
         <div class="col-lg-10 starProgress">
@@ -56,14 +45,21 @@
 
     <div class="col-lg-8 col-md-8" *ngIf="totalReview>0">
       <div *ngFor="let item of reviews | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-        <p>{{item.username}}</p>
-        <p>{{item.rating}}</p>
-        
-        <p>{{item.message}}</p>
-        <p>{{item.date}}</p>
+        <h5><i class="far fa-user-circle fa-lg"></i> {{item.username ? item.username : "Customer"}}</h5>
+        <ng-template #t let-fill="fill">
+          <span class="star" [class.full]="fill === 100">
+            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+          </span>
+        </ng-template>
+        <ngb-rating [(rate)]="item.rating" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+        <!-- <pre>Rate: <b>{{item.rating}}</b></pre> -->
+        <p class="lead">{{item.message}}</p>
+        <p><small>{{item.date}}</small></p>
         <hr>
       </div>
       <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="reviews.length" [boundaryLinks]="true">
       </ngb-pagination>
     </div>
   </div>
+
+</div>

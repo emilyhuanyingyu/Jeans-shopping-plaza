@@ -27,7 +27,7 @@ export class ItemComponent implements OnInit {
   pageSize: number = 5;
   overallRating: number;
   totalReview: number;
-  currentRate = 3.14;
+  ratingPercentage: any;
 
 
   constructor(private mainService: MainService, private itemService: ItemlookupService, private router: Router, private route: ActivatedRoute) { }
@@ -42,6 +42,11 @@ export class ItemComponent implements OnInit {
       this.itemName = data.name;
       this.overallRating = data.rating;
       this.totalReview = data.reviewCount;
+      
+      this.ratingPercentage = this.overallRating * 20;
+      this.ratingPercentage = this.ratingPercentage.toFixed(2);
+      let star = document.getElementById("currentStar").style;
+      star.setProperty('--width', this.ratingPercentage + '%')
 
       this.getReviews();
 
@@ -67,4 +72,5 @@ export class ItemComponent implements OnInit {
   postReview() {
     this.itemService.itemName.next(this.itemName);
   }
+
 }

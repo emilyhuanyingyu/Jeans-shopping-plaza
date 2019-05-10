@@ -43,7 +43,12 @@ export class ReviewComponent implements OnInit {
         if(res.status == 201){
           this.router.navigate([`/item/${this.itemId}`]);
         }
-        console.log(res);
+        if(res.status == 500){
+          console.log("500");
+        }
+        else{
+          this.errorMessage = "something is wrong, please try again";
+        }
       }
       else{
         this.errorMessage = "something is wrong, please try again";
