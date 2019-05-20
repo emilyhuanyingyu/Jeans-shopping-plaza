@@ -1,38 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Country {
-  name: string;
-  flag: string;
-  area: number;
-  population: number;
-}
-
-const COUNTRIES: Country[] = [
-  {
-    name: 'Russia',
-    flag: 'f/f3/Flag_of_Russia.svg',
-    area: 17075200,
-    population: 146989754
-  },
-  {
-    name: 'Canada',
-    flag: 'c/cf/Flag_of_Canada.svg',
-    area: 9976140,
-    population: 36624199
-  },
-  {
-    name: 'United States',
-    flag: 'a/a4/Flag_of_the_United_States.svg',
-    area: 9629091,
-    population: 324459463
-  },
-  {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
-  }
-];
+import { MarketbuyService } from '../marketbuy.service';
+import { ItemlookupService } from '../itemlookup.service';
 
 @Component({
   selector: 'app-cart',
@@ -40,11 +8,41 @@ const COUNTRIES: Country[] = [
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  countries = COUNTRIES;
+  cartItems: any;
+  cartDetails: any = [];
+  cartItemsId = [];
+  items: any;
 
-  constructor() { }
+  constructor(private marketService: MarketbuyService, private itemService: ItemlookupService) { }
 
   ngOnInit() {
+    if (this.itemService.allItems) {
+      this.items = this.itemService.allItems;
+      this.getCartList();
+    } else {
+      this.itemService.fetchAllItems().subscribe((res) => {
+        this.items = res;
+        this.getCartList();
+      });
+    }
+  }
+
+  getCartList(){
+    this.marketService.fetchCartList().subscribe((res) => {
+      this.cartItems = res.body;
+      this.cartItems.forEach(element => {
+        this.cartItemsId.push(element.itemNumber);
+      });
+
+      this.items.forEach((item) => {
+        this.cartItemsId.forEach((itemnum) => {
+          if(item.id === itemnum) {
+            this.cartDetails.push(item);
+          }
+        })
+      })
+      console.log(this.cartDetails);
+    })
   }
 
 }

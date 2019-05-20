@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
           this.service.userlogin(formInput.email, formInput.password).subscribe((response)=>{
             if (response.status == 200) {
               this.token = response.headers.get('token');
-              localStorage.setItem('userToken',response.headers.get('token'));
+              sessionStorage.setItem('userToken',response.headers.get('token'));
               this.service.loginStatus.next(true);
               this.router.navigate(['/']);
             }

@@ -1,3 +1,7 @@
+.search-hero input{
+    font-family:Arial, FontAwesome;
+}
+
 img{
     width: 100%;
     height: auto;
@@ -5,20 +9,48 @@ img{
     padding: 15px;
 }
 
-.itemsBox{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
 .itemBox{
-    flex-basis: 30%;
     border: 1px solid #ddd;
     text-align: center;
-    margin: 2px;
+    position: relative;
+    padding: 0;
+    /* margin: 5px; */
 }
 
-.search-hero input{
-    font-family:Arial, FontAwesome;
-    margin-top: 10px;
+.itemBox:hover{
+    transition: 0.3s;
+    box-shadow: 1px 1px 14px 0px #888888;
+}
+
+.itemBox:hover .priceBox{
+    background-color: #d0d5d478;
+}
+
+.itemBox>h4{
+    white-space: nowrap; 
+    width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.priceBox>h3{
+    margin-bottom: 0;
+    padding: 10px;
+}
+
+.addCart {
+    float: right;
+    cursor: pointer;
+    opacity: 0;
+    font-size: 0;
+    position: absolute;
+    right: 5%;
+    bottom: 2%;
+    transition: font-size .5s, opacity .5s;
+    color: #ffc107;
+}
+
+.itemBox:hover .addCart{
+    font-size: 2em;
+    opacity: 1;
 }

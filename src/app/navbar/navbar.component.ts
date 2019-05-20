@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   constructor(private service: MainService, private router: Router) { }
 
   ngOnInit() {
-    if(localStorage.userToken !== undefined){
+    if(sessionStorage.userToken !== undefined){
       this.userLogged = true;
     }else{
       this.userLogged = false;
@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
   }
 
   userLogout(){
-    localStorage.removeItem('userToken');
+    sessionStorage.removeItem('userToken');
     this.userLogged = false;
     this.router.navigate([''])
   }

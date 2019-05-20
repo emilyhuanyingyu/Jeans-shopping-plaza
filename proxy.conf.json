@@ -43,6 +43,15 @@
     "pathRewrite": {
       "^/library": ""
     }
+  },
+  "/auth/*": {
+    "target": "https://jean-zuul-server.herokuapp.com/jean-marketbuy-service",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/library": ""
+    }
   }
 
 }

@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
         if (response.status == 200) {
           console.log(response);
           this.token = response.headers.get('token');
-          localStorage.setItem('userToken',response.headers.get('token'));
+          sessionStorage.setItem('userToken',response.headers.get('token'));
           this.service.loginStatus.next(true);
           this.router.navigate(['/']);
         }
